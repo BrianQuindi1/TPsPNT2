@@ -52,4 +52,26 @@ const productos = [
 
     console.log("Ej9: " + productos.every((p) => p.precio > 10000));
 
-    console.log("Ej9: " + nombres.includes("Campera"));
+    console.log("Ej10: " + nombres.includes("Campera"));
+
+    console.log("Ej11");
+    productos.sort((a, b) => a.precio - b.precio);
+    console.log(productos);
+
+    console.log("Ej12")
+    let msjs = [];
+    productos.map((p) => msjs.push("El producto " + p.nombre + " cuesta $" + p.precio + 
+                                    " y pertenece a la categoría " + p.categoria ))
+    console.log(msjs);
+
+
+    console.log("Ej13");
+
+    const agregados = [
+        { id: 6, nombre: "Zapatillas", precio: 12000, categoria: "Calzado" },
+        { id: 7, nombre: "Pantalón", precio: 8500, categoria: "Ropa" },
+        { id: 8, nombre: "Mochila", precio: 6500, categoria: "Accesorios" },
+        ...productos 
+    ];
+
+    console.log(agregados)
