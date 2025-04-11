@@ -47,3 +47,9 @@ const productos = [
     console.log("Ej7");
     let gorra = productos.find((p) => p.nombre == "Gorra");
     console.log(gorra);
+
+    console.log("Ej8: " + productos.some((p) => p.precio > 10000));
+
+    console.log("Ej9: " + productos.every((p) => p.precio > 10000));
+
+    console.log("Ej9: " + nombres.includes("Campera"));
