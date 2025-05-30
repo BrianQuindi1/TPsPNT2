@@ -23,6 +23,7 @@
 import axios from 'axios';
 import { onMounted, ref } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
+import { create, getById, updateById } from '../services/ProductosServices';
 
 const router = useRouter();
 const route = useRoute();
@@ -45,7 +46,7 @@ const volver = async () => {
 }
 const fetchPost = async (id) => {
   try {
-    const response = await axios.get(`https://fakestoreapi.com/products/${id}`);
+    const response = await getById(id);
     form.value = response.data;
   } catch (error) {
     console.error('Error fetching post:', error);
@@ -60,13 +61,13 @@ const submitForm = async () => {
   }
   try {
     if (isEdit.value) {
-      await axios.put(`https://fakestoreapi.com/products/${route.params.id}`, form.value);
+      await updateById(route.params.id, form.value);
       alert('Post actualizado');
     } else {
-      await axios.post('https://fakestoreapi.com/products/', form.value);
+      await create(form.value);
       alert('Post creado');
     }
-   // router.push('/');
+   router.push('/');
   } catch (error) {
     console.error('Error al guardar', error);
   }

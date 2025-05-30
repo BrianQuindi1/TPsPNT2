@@ -2,6 +2,7 @@
 import { onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
 import axios from 'axios'
+import { deleteById, getAll } from '../services/ProductosServices';
 
 const datos = ref([]);
 const router = useRouter()
@@ -14,7 +15,7 @@ onMounted(() => {
 
 const fetchDatos = async () => {
     try {
-        const response = await axios.get("https://fakestoreapi.com/products");
+        const response = await getAll();  
         datos.value = response.data; 
     } catch (error) {
         console.error('error listado', error);
@@ -35,8 +36,7 @@ const agregar = async () => {
 
 const eliminar = async (id) => {
   try {
-    console.log("Eliminando: ", id)
-    const response = await axios.delete(`https://fakestoreapi.com/products/${id}`);
+    const response = await deleteById(id)
     datos.value = datos.value.filter(post => post.id !== id);
     console.log(datos.value)
   } catch (error) {
